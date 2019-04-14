@@ -29,4 +29,106 @@ body{
 #form{
     background-color: #f4f4f4;
     border: 2px solid rgba(255, 255, 255, 0.15);
-}
+    & .fa-eye{
+        left: 8px !important;
+        &,
+        &-slash{
+            left: 7px;
+            right: auto;
+            cursor: pointer;
+            padding: 2px 0;
+            display: none;
+            border-left: none;
+        }
+    } // .fa-eye
+    & .fa-envelope{
+        right: 11px;
+        padding-left: 9px;
+    }
+    & .fa-phone-square{
+        font-size: 1.0625rem; // 17px 
+        padding: 2px 0 2px 9px;
+    }
+    & input{
+        font-size: 0.8125rem; // 13px 
+        padding: 5px 46px 5px 10px;
+        display: block;
+        width: 100%;
+        color: #9c9c9c;
+        background: #f6f6f6;
+        border: 1px solid #fff;
+        outline: 1px solid #c6c6c6;
+        transition: border-color, outline-color .15s ease-in-out;
+        .placeholder({color: #c0c0c0;});
+
+        &:focus{
+            outline-color: var(--primary);
+            border-color: rgba(0, 123, 255, 0.3);
+        }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover, 
+        &:-webkit-autofill:focus, 
+        &:-webkit-autofill:active  {
+            -webkit-box-shadow: 0 0 0 30px #f6f6f6 inset !important;
+            -webkit-text-fill-color: #9c9c9c !important;
+        }
+    }
+} // #form
+
+
+/*
+ ====================== invalid ======================
+*/
+#form .invalid{
+    & input{
+        outline-color: var(--danger);
+        border-color: rgba(220, 53, 69, 0.4);
+        background-color: #fde8e8;
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover, 
+        &:-webkit-autofill:focus, 
+        &:-webkit-autofill:active  {
+            -webkit-box-shadow: 0 0 0 30px #fde8e8 inset !important;
+        }
+    }
+} // .invalid
+
+
+/*
+ ====================== success ======================
+*/
+#form .success{
+    & input{
+        outline-color: var(--success);
+        border-color: rgba(40, 167, 69, 0.4);
+        background-color: #e8f0fd;
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover, 
+        &:-webkit-autofill:focus, 
+        &:-webkit-autofill:active  {
+            -webkit-box-shadow: 0 0 0 30px #e8f0fd inset !important;
+        }
+    }
+} // .success
+
+/*
+ ====================== tip ======================
+*/
+#form .tip{
+    width: 85%;
+    z-index: -10;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    visibility: hidden;
+    opacity: 0;
+    .transform-style(preserve-3d);
+    .scale(0.7);
+    .user-select(none);
+    .transition(all 0.2s linear);
+    text-align: center;
+    margin: 0 auto;
+} // .tip
