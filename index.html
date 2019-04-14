@@ -16,6 +16,7 @@
             <div class="col-12 col-sm-11 col-md-8 col-lg-6 mr-auto ml-auto mt-70 p-3">
 
                 <form id="form" class="p-3" method="POST">
+
                     <div class="form-group relative">
                         <i class="fas fa-user absolute center-icon"></i>
                         <input type="text" name="name" id="name" placeholder="نام و نام‌خانوادگی">
@@ -30,6 +31,53 @@
                             </div>
                         </div><!-- tip absolute  -->
                     </div><!-- form-group relative  -->
+                    
+                    <div class="form-group relative">
+                        <i class="fas fa-user absolute center-icon"></i>
+                        <input type="text" name="username" id="username" placeholder="نام کاربری">
+                        <div class="tip absolute">
+                            <div>
+                                <p>نام کاربری باید:</p>
+                                <ul class="pr-2 pt-1">
+                                    <li>تکمیل کردن این فیلد الزامی است.</li>
+                                    <li>حداقل 6 کاراکتر و حداکثر 30 کاراکتر باشد.</li>
+                                    <li>در این فیلد نمی‌توانید از علامت‌های نظیر (. ؟ ! - ـ) و حروف فارسی استفاده کنید.</li>
+                                </ul>
+                            </div>
+                        </div><!-- tip absolute  -->
+                    </div><!-- form-group relative  -->
+
+                    <div class="form-group relative">
+                        <i class="fas fa-lock absolute center-icon"></i>
+                        <i class="far fa-eye-slash absolute center-icon"></i>
+                        <input type="password" name="password" id="password" placeholder="رمز عبور">
+                        <div class="tip absolute">
+                            <div>
+                                <p>رمز عبور باید:</p>
+                                <ul class="pr-2 pt-1">
+                                    <li>تکمیل کردن این فیلد الزامی است.</li>
+                                    <li>حداقل هشت کارکتر داشته باشد.</li>
+                                    <li>در حروف رمز عبور باید حداقل دو کاراکتر ویژه نظیر (. , # $ & %) استفاده شده باشد.</li>
+                                </ul>
+                            </div>
+                        </div><!-- tip absolute  -->
+                    </div><!-- form-group relative  -->
+
+                    <div class="form-group relative">
+                        <i class="fas fa-envelope absolute center-icon"></i>
+                        <input type="text" name="email" id="email" placeholder="پست الکترونیکی">
+                    </div><!-- form-group relative  -->
+
+                    <div class="form-group relative">
+                        <i class="fas fa-phone-square absolute center-icon"></i>
+                        <input type="text" name="phone" id="phone" placeholder="شماره تماس"">
+                    </div><!-- form-group relative  -->
+                    
+                    <div class="text-left">
+                        <button type="reset" class="btn btn-danger">پاک کردن اطلاعات</button>
+                        <button type="submit" class="btn btn-success">ارسال فرم</button>
+                    </div><!-- text-left  -->
+
                 </form> 
 
             </div><!-- col-12 col-sm-11 col-md-8 col-lg-6 mr-auto ml-auto mt-70 p-3 -->
