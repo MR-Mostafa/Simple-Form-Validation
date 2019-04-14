@@ -191,9 +191,7 @@ body{
     }
 
     & li{
-        position: relative;
-        padding-right: 8px;
-        &:extend(#error);
+        &:extend(#error ul li);
 
         &::before{
             content: '\2022';
@@ -236,5 +234,33 @@ body{
         .animation(show-msg 1s forwards, hide-msg 0.8s 5s forwards;);
         .translateY(100px);
         .user-select(none);
+
+        &::after{
+            content: '\f071';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+            font-size: 1.6rem;
+            opacity: .5;
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            .translateY(-50%);
+        }
+
+        & li{
+            position: relative;
+            padding-right: 8px;
+
+            &::before{
+                top: 3px;
+            }
+        }
     }
 } // #error
