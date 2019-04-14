@@ -193,6 +193,7 @@ body{
     & li{
         position: relative;
         padding-right: 8px;
+        &:extend(#error);
 
         &::before{
             content: '\2022';
@@ -214,5 +215,26 @@ body{
  ====================== error ======================
 */
 #error{
+    top: auto;
+    bottom: 10px;
+    right: 10px;
+    max-width: 70%;
+    min-width: 25%;
+    z-index: 1000;
 
+    & ul{
+        background: rgba(244, 67, 54, .9);
+        border: 1px solid rgba(255, 255, 255, .2);
+        padding: 8px 18px 8px 45px;
+        margin-top: 9px;
+        line-height: 1.5rem;
+        font-size: .75rem;
+        .box-shadow(0 0 6px 1px rgba(0,0,0,.3));
+        color: rgba(255, 255, 255, .9);
+        position: relative;
+        .border-radius(4px);
+        .animation(show-msg 1s forwards, hide-msg 0.8s 5s forwards;);
+        .translateY(100px);
+        .user-select(none);
+    }
 } // #error
