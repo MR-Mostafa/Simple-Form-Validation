@@ -64,6 +64,11 @@ body{
         &:focus{
             outline-color: var(--primary);
             border-color: rgba(0, 123, 255, 0.3);
+            & ~ .tip{
+                visibility: visible;
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         &:-webkit-autofill,
@@ -131,4 +136,83 @@ body{
     .transition(all 0.2s linear);
     text-align: center;
     margin: 0 auto;
+
+    &.show{
+        z-index: 1000;
+    }
+
+    &.bottom{
+        bottom: auto !important;
+        top: 40px;
+        & > div{
+            &::after{
+                top: -9.9px;
+                bottom: auto;
+                right: 0;
+                left: 0;
+                margin: 0 auto;
+                border-right: 9px solid #0000;
+                border-left: 9px solid #0000;
+                border-top: none;
+                border-bottom: 10px solid #343a40e6;
+            }
+        }
+    }
+
+    & > div{
+        bottom: 40px;
+        text-align: right;
+        display: inline-block;
+        background: rgba(52, 58, 64, .9);
+        font-size: .65rem;
+        color: var(--light);
+        padding: .7rem;
+        padding-bottom: 1rem;
+
+        &::after{
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: auto;
+            bottom: -9.9px;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            border-right: 9px solid #0000;
+            border-left: 9px solid #0000;
+            border-top: 10px solid #343a40e6;
+            border-bottom: none;
+        }
+    }
+
+    & p{
+        font-weight: bold;
+    }
+
+    & li{
+        position: relative;
+        padding-right: 8px;
+
+        &::before{
+            content: '\2022';
+            font-size: 1.5rem;
+            overflow: hidden;
+            display: inline-block;
+            position: absolute;
+            top: -7px;
+            right: -5px;
+        }
+
+        :not(:last-child){
+            padding-bottom: .25rem;
+        }
+    }
 } // .tip
+
+/*
+ ====================== error ======================
+*/
+#error{
+
+} // #error
