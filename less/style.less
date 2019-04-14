@@ -1,2 +1,32 @@
 @import "./UsefulCSS.min.less";
 
+/*
+ ================== Base ==================
+*/
+body, html {
+    min-height: 100%;
+}
+body{
+    background: url('../image/bg.jpg') transparent center no-repeat;
+    background-size: cover;
+}
+
+/*
+ ====================== mt-70 ======================
+*/
+.mt-70{
+    margin-top: 70px;
+    &.col-12{
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(0, 0, 0, 0.02);
+        border-radius: 3px;
+    }
+}
+
+/*
+ ====================== form ======================
+*/
+#form{
+    background-color: #f4f4f4;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
