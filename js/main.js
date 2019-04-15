@@ -161,121 +161,122 @@ function checkValueAfterSubmit(e){
 // If the showErrorMsg parameter is equal true, it displays error message when the field focus out.
 // default value for showErrorMsg parameter is equal false.
 function checkValueAfterFocusout(e, showErrorMsg = false){
-var event, textErrorMsg, hasError, node, selectUL;
-event = e.target;
-textErrorMsg = [];
-hasError = false;
+    var event, textErrorMsg, hasError, node, selectUL;
+    event = e.target;
+    textErrorMsg = [];
+    hasError = false;
 
 
     // checking that event are not empty
-if (event.value.trim().length == '') {
-    textErrorMsg.push(event.placeholder + errorMsg.notEmpty);
-    event.parentElement.classList.add('invalid');
-    hasError = true;
-}else{
-    // value of event must be greater than 6 characters
-    // ['name', 'username'].includes(event.id) This means the Element id should be 'name' and 'username'
-    // Because the minimum allowed characters in these items should be greater than 6 characters. (Minimum length of 6 characters is not enough)
-    if (event.value.trim().length < 6 && ['name', 'username'].includes(event.id)) {
-        textErrorMsg.push(event.placeholder + errorMsg.lessThan3Characters);
+    if (event.value.trim().length == '') {
+        textErrorMsg.push(event.placeholder + errorMsg.notEmpty);
         event.parentElement.classList.add('invalid');
         hasError = true;
-    }
+    }else{
+        // value of event must be greater than 6 characters
+        // ['name', 'username'].includes(event.id) This means the Element id should be 'name' and 'username'
+        // Because the minimum allowed characters in these items should be greater than 6 characters. (Minimum length of 6 characters is not enough)
+        if (event.value.trim().length < 6 && ['name', 'username'].includes(event.id)) {
+            textErrorMsg.push(event.placeholder + errorMsg.lessThan3Characters);
+            event.parentElement.classList.add('invalid');
+            hasError = true;
+        }
 
-    // The maximum length of the event must be less than 30 characters
-    // ['name', 'username'].includes(event.id) This means the Element id should be 'name' and 'username'
-    // Because the maximum allowed characters in these items can be greater than 30 characters
-    if (event.value.trim().length >= 30 && ['name', 'username'].includes(event.id)) {
-        textErrorMsg.push(event.placeholder + errorMsg.notMore30Characters);
+        // The maximum length of the event must be less than 30 characters
+        // ['name', 'username'].includes(event.id) This means the Element id should be 'name' and 'username'
+        // Because the maximum allowed characters in these items can be greater than 30 characters
+        if (event.value.trim().length >= 30 && ['name', 'username'].includes(event.id)) {
+            textErrorMsg.push(event.placeholder + errorMsg.notMore30Characters);
+            event.parentElement.classList.add('invalid');
+            hasError = true;
+        }
+
+        // If Element id was equal to 'name', then Checks this input that has not been used by invalid characters
+        // Allowed characters are: /^[آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیءَُِّةأإيئؤكٔa-zA-Z ]+$/
+        if(event.id == 'name'){
+            if(!nameReg.test(inpName.value.trim())){
+                textErrorMsg.push('در ' + inpName.placeholder + errorMsg.invalidWord);
+                inpName.parentElement.classList.add('invalid');
+                hasError = true;
+            }
+        }
+
+        // If Element id was equal to 'username', then Checks this input that has not been used by invalid characters
+        // Allowed characters are: /^[a-zA-Z0-9\.\-\_]+$/
+        if(event.id == 'username'){
+            if(!userNameReg.test(inpUserName.value.trim()) && inpUserName.value.trim().length > 6){
+                textErrorMsg.push('در ' + inpUserName.placeholder + errorMsg.invalidWord);
+                inpUserName.parentElement.classList.add('invalid');
+                hasError = true;
+            }
+        }
+        
+
+        // First IF  : Checked the password and must be more than 8 characters
+        // Second IF : Checks the password input that has been used by at least two specific characters
+        if(event.id == 'password'){
+            if (inpPassword.value.length <= 8) {
+                textErrorMsg.push(errorMsg.passMore8Characters);
+                inpPassword.parentElement.classList.add('invalid');
+                hasError = true;
+            }else if(!passReg.test(inpPassword.value)){
+                textErrorMsg.push(errorMsg.specialCharactersInPass);
+                inpPassword.parentElement.classList.add('invalid');
+                hasError = true;
+            }
+        }   
+
+        // Checks the Email that is correct or not?
+        if(event.id == 'email'){
+            if(!emeilReg.test(inpEmail.value) && inpEmail.value != ''){
+                textErrorMsg.push(errorMsg.emailNotValid);
+                inpEmail.parentElement.classList.add('invalid');
+                hasError = true;
+            }
+        }
+
+        // First IF  : Checked the phone number and must be more than 8 characters
+        // Second IF : Checks the phone number that is correct or not? (The number value can be a mobile number or a tellphone number)
+        if(event.id == 'phone'){
+            if(inpPhone.value.length < 8 && inpPhone.value != ''){
+                textErrorMsg.push(errorMsg.tellMore7Characters);
+                inpPhone.parentElement.classList.add('invalid');
+                hasError = true;
+            }else if(!phonReg.test(inpPhone.value) && inpPhone.value != ''){
+                textErrorMsg.push(errorMsg.tellNotValid);
+                inpPhone.parentElement.classList.add('invalid');
+                hasError = true;
+            }
+
+        }
+
+    } // end main else
+
+
+
+    // Checks that if the hasError equal to false, then adds the 'success' class
+    if(hasError == false){
+        event.parentElement.classList.remove('invalid');
+        event.parentElement.classList.add('success');
+    }else{
+        event.parentElement.classList.remove('success');
         event.parentElement.classList.add('invalid');
-        hasError = true;
     }
 
-    // If Element id was equal to 'name', then Checks this input that has not been used by invalid characters
-    // Allowed characters are: /^[آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیءَُِّةأإيئؤكٔa-zA-Z ]+$/
-    if(event.id == 'name'){
-        if(!nameReg.test(inpName.value.trim())){
-            textErrorMsg.push('در ' + inpName.placeholder + errorMsg.invalidWord);
-            inpName.parentElement.classList.add('invalid');
-            hasError = true;
+    // if hasError and showErrorMsg are equal true, then Displays the error message
+    if(hasError && showErrorMsg == true){
+        node = document.createElement('ul');
+        elmError.appendChild(node);
+        node.style.display = 'block';
+        selectUL = document.querySelector('#error ul:last-child');
+        for(var i = 0; i < textErrorMsg.length; i++){
+            selectUL.innerHTML += "<li>" + textErrorMsg[i] + "</li>";
         }
+        setTimeout(function(){
+            node.style.display = 'none';
+        }, 5850);
     }
 
-    // If Element id was equal to 'username', then Checks this input that has not been used by invalid characters
-    // Allowed characters are: /^[a-zA-Z0-9\.\-\_]+$/
-    if(event.id == 'username'){
-        if(!userNameReg.test(inpUserName.value.trim()) && inpUserName.value.trim().length > 6){
-            textErrorMsg.push('در ' + inpUserName.placeholder + errorMsg.invalidWord);
-            inpUserName.parentElement.classList.add('invalid');
-            hasError = true;
-        }
-    }
-    
-
-    // First IF  : Checked the password and must be more than 8 characters
-    // Second IF : Checks the password input that has been used by at least two specific characters
-    if(event.id == 'password'){
-        if (inpPassword.value.length <= 8) {
-            textErrorMsg.push(errorMsg.passMore8Characters);
-            inpPassword.parentElement.classList.add('invalid');
-            hasError = true;
-        }else if(!passReg.test(inpPassword.value)){
-            textErrorMsg.push(errorMsg.specialCharactersInPass);
-            inpPassword.parentElement.classList.add('invalid');
-            hasError = true;
-        }
-    }   
-
-    // Checks the Email that is correct or not?
-    if(event.id == 'email'){
-        if(!emeilReg.test(inpEmail.value) && inpEmail.value != ''){
-            textErrorMsg.push(errorMsg.emailNotValid);
-            inpEmail.parentElement.classList.add('invalid');
-            hasError = true;
-        }
-    }
-
-    // First IF  : Checked the phone number and must be more than 8 characters
-    // Second IF : Checks the phone number that is correct or not? (The number value can be a mobile number or a tellphone number)
-    if(event.id == 'phone'){
-        if(inpPhone.value.length < 8 && inpPhone.value != ''){
-            textErrorMsg.push(errorMsg.tellMore7Characters);
-            inpPhone.parentElement.classList.add('invalid');
-            hasError = true;
-        }else if(!phonReg.test(inpPhone.value) && inpPhone.value != ''){
-            textErrorMsg.push(errorMsg.tellNotValid);
-            inpPhone.parentElement.classList.add('invalid');
-            hasError = true;
-        }
-
-    }
-
-} // end main else
-
-
-
-// Checks that if the hasError equal to false, then adds the 'success' class
-if(hasError == false){
-    event.parentElement.classList.remove('invalid');
-    event.parentElement.classList.add('success');
-}else{
-    event.parentElement.classList.remove('success');
-    event.parentElement.classList.add('invalid');
-}
-
-// if hasError and showErrorMsg are equal true, then Displays the error message
-if(hasError && showErrorMsg == true){
-    node = document.createElement('ul');
-    elmError.appendChild(node);
-    node.style.display = 'block';
-    selectUL = document.querySelector('#error ul:last-child');
-    for(var i = 0; i < textErrorMsg.length; i++){
-        selectUL.innerHTML += "<li>" + textErrorMsg[i] + "</li>";
-    }
-    setTimeout(function(){
-        node.style.display = 'none';
-    }, 5850);
-}
 } //end function checkValueAfterFocusout
 
 
@@ -383,7 +384,7 @@ function hideTip(e){
 }
 
 // all event listenrs
-form.addEventListener('submit', function(e){
+form.addEventListener('click', function(e){
     checkValueAfterSubmit(e);
 }, false);
 
