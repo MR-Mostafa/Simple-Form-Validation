@@ -199,7 +199,6 @@ body {
   font-size: .65rem;
   color: var(--light);
   padding: .7rem;
-  padding-bottom: 1rem;
 }
 #form .tip > div::after {
   content: '';
