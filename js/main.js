@@ -384,7 +384,7 @@ function hideTip(e){
 }
 
 // all event listenrs
-form.addEventListener('click', function(e){
+form.addEventListener('submit', function(e){
     checkValueAfterSubmit(e);
 }, false);
 
