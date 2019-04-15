@@ -93,7 +93,13 @@ body {
 #form input:focus ~ .tip {
   visibility: visible;
   opacity: 1;
-  transform: scale(1);
+  filter: alpha(opacity=100);
+  zoom: 1;
+  -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  transform: scale(1, 1);
 }
 #form input:-webkit-autofill,
 #form input:-webkit-autofill:hover,
@@ -144,11 +150,11 @@ body {
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-transform: scale(0.7, 1);
-  -moz-transform: scale(0.7, 1);
-  -ms-transform: scale(0.7, 1);
-  -o-transform: scale(0.7, 1);
-  transform: scale(0.7, 1);
+  -webkit-transform: scale(0.7, 0.7);
+  -moz-transform: scale(0.7, 0.7);
+  -ms-transform: scale(0.7, 0.7);
+  -o-transform: scale(0.7, 0.7);
+  transform: scale(0.7, 0.7);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
