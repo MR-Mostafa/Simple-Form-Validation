@@ -227,7 +227,7 @@ body {
   top: -7px;
   right: -5px;
 }
-#form .tip li :not(:last-child) {
+#form .tip li:not(:last-child) {
   padding-bottom: .25rem;
 }
 /*
